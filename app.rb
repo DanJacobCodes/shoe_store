@@ -54,3 +54,10 @@ delete('/stores/:id') do
   @store.delete()
   redirect('/store')
 end
+
+patch('/stores/:id') do
+  name = params.fetch("name")
+  @store = Store.find(params.fetch("id").to_i())
+  @store.update({:name => name})
+  erb(:store)
+end

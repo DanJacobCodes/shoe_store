@@ -10,9 +10,16 @@
 <p><a href="/brands">Add a brand to this store</a></p>
 
 <% end %>
-
-<h3>Delete store</h3>
+<br>
+<h4>Delete store</h4>
 <form action="/stores/<%= @store.id() %>" method="post">
   <input name="_method" type="hidden" value="delete">
-  <button type="submit">Delete</button>
+  <button type="submit" class = "btn btn-danger">Delete</button>
+</form>
+<br>
+<h4>Rename Store</h4>
+<form action="/stores/<%= @store.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <input type="text" name="name">
+  <button type="submit" class = "btn btn-primary">Update</button>
 </form>

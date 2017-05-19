@@ -4,6 +4,7 @@ class CreateStores < ActiveRecord::Migration[5.1]
       t.column(:name, :string)
 
 
-      t.timestamps
+      t.timestamps()
+    end
   end
 end

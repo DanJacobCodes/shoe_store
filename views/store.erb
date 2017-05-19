@@ -7,10 +7,11 @@
 <% else %>
 <p><strong><em>No brands available!</em></strong></p>
 <br>
-<p><a href="/brands">Add a brand to this store</a></p>
 
 <% end %>
 <br>
+
+
 <h4>Delete store</h4>
 <form action="/stores/<%= @store.id() %>" method="post">
   <input name="_method" type="hidden" value="delete">

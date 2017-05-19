@@ -1,0 +1,11 @@
+<h2>Brand: <%= @brand.name() %></h2>
+<hr>
+
+<% if @brand %>
+<h3>Available Brands: <%= @brand.name %> </h3>
+
+<% else %>
+<p><strong><em>No brands available!</em></strong></p>
+<br>
+<p><a href="/brands">Add a brand to the database</a></p>
+<% end %>

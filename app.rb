@@ -28,6 +28,7 @@ end
 
 get('/stores/:id') do
   @store = Store.find(params.fetch('id').to_i())
+  @brands = Brand.all()
   erb(:store)
 end
 
@@ -60,4 +61,12 @@ patch('/stores/:id') do
   @store = Store.find(params.fetch("id").to_i())
   @store.update({:name => name})
   erb(:store)
+end
+
+
+patch('/stores/:id/')do
+brand = Brand.find(params.fetch("brand_id").to_i())
+@store = Store.find(params.fetch("id").to_i())
+@store.brands.push(brand)
+redirect back
 end

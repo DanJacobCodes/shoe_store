@@ -1,27 +1,15 @@
-require("spec_helper")
+require('capybara/rspec')
+require('./app')
+Capybara.app = Sinatra::Application
+set(:show_exceptions, false)
 
-describe(Brand)do
-  it("validates presece of brand name") do
-    brand = Brand.new({:name => ""})
-    expect(brand.save()).to(eq(false))
+describe('brand', {:type => :feature}) do
+  it ("Will allow users to add a brand with a price")do
+    visit('/brands')
+    click_link('View Brands')
+    fill_in('brand_name', :with => 'nike')
+    fill_in('brand_price', :with => '55')
+    click_button('Add Brand')
+    expect(page).to have_content('Nike')
   end
 end
-describe(Brand) do
-    it("converts the first letter to uppercase") do
-      brand = Brand.create({:name => "nike"})
-      expect(brand.name()).to(eq("Nike"))
-    end
-  end
-  describe(Brand) do
-it("ensures the length of name is at most 100 characters") do
-  brand = Brand.new({:name => "a".*(101)})
-  expect(brand.save()).to(eq(false))
-  end
-end
-describe(Brand) do
-it("ensures that no two brands are alike") do
-  brand = Brand.new({:name => "Nike"})
-  brand2 = Brand.new({:name => "Nike"})
-  expect(brand.save()).to(eq(false))
-    end
-  end

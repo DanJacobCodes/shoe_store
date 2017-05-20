@@ -70,7 +70,7 @@ patch('/store/rename/:id') do
   @store.update({:name => name})
   @stores = Store.all()
   @brands = Brand.all()
-  erb(:stores)
+  erb(:store)
 end
 
 patch('/store/:id') do
@@ -78,7 +78,7 @@ patch('/store/:id') do
   brand_id = params.fetch('brand_id')
   @store = Store.find(id)
   @brand = Brand.find(brand_id)
-  @brand.update(:id => @store.id())
+  @brand.update(:id => @brand.id())
   @brands = Brand.all()
   redirect back
 end

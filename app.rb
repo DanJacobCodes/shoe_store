@@ -56,11 +56,21 @@ delete('/stores/:id') do
   redirect('/store')
 end
 
-patch('/stores/:id') do
-  name = params.fetch("name")
-  @store = Store.find(params.fetch("id").to_i())
+
+post('/store/rename/:id') do
+  id = params.fetch('id')
+  @store = Store.find(id)
+  erb(:store_rename_form)
+end
+
+patch('/store/rename/:id') do
+  id = params.fetch('id')
+  @store = Store.find(id)
+  name = params.fetch('name')
   @store.update({:name => name})
-  erb(:store)
+  @stores = Store.all()
+  @brands = Brand.all()
+  erb(:stores)
 end
 
 patch('/store/:id') do
@@ -70,5 +80,5 @@ patch('/store/:id') do
   @brand = Brand.find(brand_id)
   @brand.update(:id => @store.id())
   @brands = Brand.all()
-  erb(:store)
+  redirect back
 end

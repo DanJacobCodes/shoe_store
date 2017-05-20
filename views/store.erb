@@ -34,9 +34,7 @@
   <button type="submit" class = "btn btn-danger">Delete</button>
 </form>
 <br>
-<h4>Rename Store</h4>
-<form action="/stores/<%= @store.id() %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <input type="text" name="name">
-  <button type="submit" class = "btn btn-primary">Update</button>
-</form>
+  <form action="/store/rename/<%= @store.id() %>" method="post">
+    <button class = "btn btn-primary" type="submit">Rename <%= @store.name() %></button>
+  </form>
+</div>

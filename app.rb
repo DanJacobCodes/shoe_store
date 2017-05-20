@@ -80,5 +80,5 @@ patch('/store/:id') do
   @brand = Brand.find(brand_id)
   @brand.update(:id => @brand.id())
   @brands = Brand.all()
-  redirect back
+  erb(:store)
 end

@@ -73,12 +73,18 @@ patch('/store/rename/:id') do
   erb(:store)
 end
 
-patch('/store/:id') do
-  id = params.fetch('id')
-  brand_id = params.fetch('brand_id')
-  @store = Store.find(id)
-  @brand = Brand.find(brand_id)
-  @brand.update(:id => @brand.id())
-  @brands = Brand.all()
-  erb(:store)
+
+patch('/stores/:id') do
+  id = params.fetch("id").to_i()
+  @brand = Brand.find(params.fetch("brand_id").to_i())
+  @brand.update({:store_id => id})
+  redirect back
+end
+
+
+patch('/brands/:id') do
+  brand = Brand.find(params.fetch("brand_id").to_i())
+  @store = Store.find(params.fetch("id").to_i())
+  @store.brands.push(brand)
+  redirect back
 end

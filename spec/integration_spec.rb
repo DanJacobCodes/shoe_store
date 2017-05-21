@@ -8,7 +8,7 @@ describe('brand', {:type => :feature}) do
     visit('/brands')
     click_link('View Brands')
     fill_in('brand_name', :with => 'nike')
-    fill_in('brand_price', :with => '55')
+    fill_in('Price', :with => '55')
     click_button('Add Brand')
     expect(page).to have_content('Nike')
   end

@@ -8,7 +8,7 @@ end
 describe(Store) do
     it("converts the first letter to uppercase") do
       store = Store.create({:name => "nike"})
-      expect(store.name()).to(eq("Nike"))
+      expect(store.name.capitalize()).to(eq("Nike"))
     end
   end
   describe(Store) do

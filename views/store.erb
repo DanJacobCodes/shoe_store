@@ -1,29 +1,35 @@
-<h2><%= @store.name() %></h2>
+
+<h2> <%= @store.name() %></h2>
 <hr>
 
-<% if @store.brands().any?() %>
-     <h3>Our brands</h3>
-     <ul>
-       <% @store.brands().each() do |brand| %>
-         <li><%= brand.name() %></li>
-       <% end %>
-     </ul>
-   <% else %>
-     <p>No brands available, be the first to add a brand!</p>
-   <% end %>
-<br>
+<% if @brands.all() %>
+  <h3>Here are the brands currently assigned to this store:</h3>
+  <ul>
+    <% @brands.each() do |store_brand| %>
+      <li><%= store_brand.name %></li>
+    <% end %>
+  </ul>
 
-<form action="/store/<%= @store.id %>" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <p>Select brand to assign to this store</p>
-  <select id='brand_id' name='brand_id' type='text'>
+<% else %>
+
+    <p><strong>There are currently no brands assigned to this store.</strong></p>
+    <br>
+
+<% end %>
+
+<p>Add a brand to this store:<p>
+<form id="add_brand_id" action="/stores/<%= @store.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <input type="hidden" name="store_id" id="store_id" value="<%= @store.id() %>">
+  <label for="brand_id">Select an brand:  </label>
+    <br>
+  <select id="brand_id" name="brand_id">
+    <option value=""></option>
     <% @brands.each() do |brand| %>
-      <option value="<%= brand.id()%>"> <%= brand.name() %> </option>
+      <option value="<%= brand.id() %>"><%= brand.name() %></option>
     <% end %>
   </select>
-  <form action="/store/<%= @store.id() %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <button class = "btn btn-warning active" type="submit">Add</button>
+  <button type="submit">Submit</button>
 </form>
 
 <h4>Delete store</h4>

@@ -1,14 +1,16 @@
-<h2>Store: <%= @store.name() %></h2>
+<h2><%= @store.name() %></h2>
 <hr>
 
-<% if @brand %>
-<h3>Available Brands: <%= @brand.name %> </h3>
-
-<% else %>
-<p><strong><em>No brands available!</em></strong></p>
-<br>
-
-<% end %>
+<% if @store.brands().any?() %>
+     <h3>Our brands</h3>
+     <ul>
+       <% @store.brands().each() do |brand| %>
+         <li><%= brand.name() %></li>
+       <% end %>
+     </ul>
+   <% else %>
+     <p>No brands available, be the first to add a brand!</p>
+   <% end %>
 <br>
 
 <form action="/store/<%= @store.id %>" method="post">
@@ -19,7 +21,7 @@
       <option value="<%= brand.id()%>"> <%= brand.name() %> </option>
     <% end %>
   </select>
-  <form action="/stores/<%= @store.id() %>" method="post">
+  <form action="/store/<%= @store.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
   <button class = "btn btn-warning active" type="submit">Add</button>
 </form>

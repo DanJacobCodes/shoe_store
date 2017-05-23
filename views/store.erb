@@ -2,10 +2,10 @@
 <h2> <%= @store.name() %></h2>
 <hr>
 
-<% if @brands.all() %>
+<% if @associated_brands.any?() %>
   <h3>Here are the brands currently assigned to this store:</h3>
   <ul>
-    <% @brands.each() do |store_brand| %>
+    <% @associated_brands.each() do |store_brand| %>
       <li><%= store_brand.name %></li>
     <% end %>
   </ul>
